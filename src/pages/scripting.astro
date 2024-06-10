@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Note from "../components/Note.astro"
+import { Code } from "astro:components";
+
+const pageTitle = "Maya Game Scripting"
+const allNotes = await getCollection("scripting")
+---
+<BaseLayout pageTitle={pageTitle}>
+
+    <ul>
+        {
+          allNotes.map((note) => (
+            <Note url={`/scripting/${note.slug}/`} title={note.data.title} />
+          ))
+        }
+    </ul>
+</BaseLayout>
